@@ -9,9 +9,9 @@ const navbarStyle = {
 
 const Header = ({ title }) => {
   return (
-    <Navbar style={navbarStyle} data-bs-theme='light'>
+    <Navbar style={navbarStyle} data-bs-theme="light">
       <Container>
-        <Navbar.Brand href='/'>{title}</Navbar.Brand>
+        <Navbar.Brand href="/">{title}</Navbar.Brand>
       </Container>
     </Navbar>
   );
@@ -22,3 +22,5 @@ Header.propTypes = {
 };
 
 export default Header;
+// eslint-disable-next-line no-undef
+export const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
