@@ -3,5 +3,6 @@
   "eslint.validate": ["javascript", "javascriptreact", "html"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "python.poetryPath": "api/.venv/Scripts/python.exe"
 }
