@@ -2,8 +2,7 @@
 import requests
 from flask import Flask, request
 
-UNSPLASH_URL ="https://api.unsplash.com/photos/random"
-UNSPLASH_KEY = "djsLUwDFseHW9eJkKLfYshTeLOlWRHHNsPNhltvKdts"
+
 
 app = Flask(__name__)
 
