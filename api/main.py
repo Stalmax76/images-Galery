@@ -1,11 +1,18 @@
 # save this as app.py
+import os
 import requests
 from flask import Flask, request
+from dotenv import load_dotenv
 
+load_dotenv( dotenv_path="./.env.local")
 
+UNSPLASH_KEY = os.environ.get("UNSPLASH_KEY", "")
+UNSPLASH_URL ="https://api.unsplash.com/photos/random"
+
+if not UNSPLASH_KEY:
+    raise EnvironmentError("You need to create .env.local file and insert UNSPLASH_KEY there")
 
 app = Flask(__name__)
-
 
 @app.route("/new-image")
 def new_image():
@@ -14,10 +21,9 @@ def new_image():
         "Accept-Version": "v1",
         "Authorization": f"Client-ID {UNSPLASH_KEY}"
     }
-    params= {
-        "query":word
-    }
+    params= {"query":word}
     response = requests.get(url=UNSPLASH_URL, headers=headers, params=params)
+
     data = response.json()
     return data
    
@@ -25,8 +31,7 @@ def new_image():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-# def hello():
-    # return "Hello, Vasyl!"
+
 
 
 
