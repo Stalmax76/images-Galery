@@ -1,4 +1,5 @@
 ===================== comands ===============
+pipenv shell
 
 start server: flask run 
 
@@ -8,7 +9,7 @@ For Windows users only:
 
 In the next lecture instead of
 
-env FLASK_APP=main.py flask run
+$env FLASK_APP=main.py flask run
 
 enter command
 
@@ -17,3 +18,5 @@ set FLASK_APP=main.py flask run
 //=================== start ===================
 $env:FLASK_APP = "main.py"
 flask run
+
+python main.py

@@ -14,9 +14,9 @@ from flask_cors import CORS
 load_dotenv( dotenv_path="./.env.local")
 
 # змінні
-UNSPLASH_URL ="https://api.unsplash.com/photos/random"
+UNSPLASH_URL = "https://api.unsplash.com/photos/random"
 # встановлення ключа з фаєлу .env
-UNSPLASH_KEY = os.environ.get("UNSPLASH_KEY", "")
+UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY", "")
 # встановлення режиму роботи дебагера, для автоматичного оновлення сторінки
 DEBUG=bool(os.environ.get("DEBUG", True))
 
