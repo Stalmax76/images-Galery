@@ -1,0 +1,5 @@
+ побудова докер-образу  перед побудовою потрібно видалити node_modules!
+
+ --- також повинен бути запущений докер-дестоп
+ docker build . 
+ docker build . -t images-gallery-api

@@ -20,3 +20,16 @@ $env:FLASK_APP = "main.py"
 flask run
 
 python main.py
+
+//============== terminal докер=====================
+подивитись доступні контейнери в докері
+docker images 
+
+створення свого контейнера з докер-файлом(іменований докер-файл)
+docker build . -t images-gallery-api 
+
+запуск свого контейнера
+docker run -p 5000:5000 images-gallery-api
+
+показати всі контейнери
+docker ps
