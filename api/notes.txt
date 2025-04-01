@@ -33,3 +33,30 @@ docker run -p 5000:5000 images-gallery-api
 
 показати всі контейнери
 docker ps
+
+
+запуск api контейнера 
+docker run -p 5000:5000 -d images-gallery-api
+ отримуємо хеш контейнера
+
+запускаємо другий контейнер
+  docker run -p 3000:3000 -d images-gallery-frontend
+
+
+зупинка контейнера та запуск
+  docker stop імя контейнера
+  docker start імя контейнера
+
+  побачити інформацію про контейнер
+  docker logs імя контейнера
+
+запуск всіх контейнерів
+
+create docker-compose.yml
+docker-compose up
+
+запуск всіх контейнерів у відділеному режимі
+docker-compose up -d 
+
+зупинка всіх контейнерів
+docker-compose down
