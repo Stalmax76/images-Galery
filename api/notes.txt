@@ -60,3 +60,22 @@ docker-compose up -d
 
 зупинка всіх контейнерів
 docker-compose down
+
+
+відкриваємо термінал у контейнері монго
+docker exec -it images-gallery-mongo-1 bash
+docker exec -it images-gallery-mongo-1 mongosh --username root --password strong_password
+
+показати всі бази
+show dbs
+
+показати всі колекції
+use admin
+
+
+show collections
+
+заходимо в монго елспресс
+localhost:8081
+ імя - admin
+пароль - pass
