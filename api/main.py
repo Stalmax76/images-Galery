@@ -9,6 +9,8 @@ from flask import Flask, request
 from dotenv import load_dotenv
 # розширений дозвіл на взаємодію між різними доменами
 from flask_cors import CORS
+# пакет для взаємодії з mongo
+# from mongo_client import insert_test_document
 
 # завантаження файлу .env
 load_dotenv( dotenv_path="./.env.local")
@@ -31,6 +33,9 @@ CORS(app)
 # встановлення режиму роботи дебагера
 app.config["DEBUG"] = DEBUG
 
+
+# запуск функції для заповнення бази даних
+# insert_test_document()
 # запит до api
 @app.route("/new-image")
 # приймаємо параметри

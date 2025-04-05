@@ -79,3 +79,7 @@ show collections
 localhost:8081
  імя - admin
 пароль - pass
+
+
+перебудова  конкретного контейнера в звязку з внесенням змін 
+docker-compose up --build -d api
