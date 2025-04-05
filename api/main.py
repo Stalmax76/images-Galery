@@ -4,13 +4,17 @@ import os
 # пакет для взаємодії з api
 import requests
 # пакет робочий сервер
-from flask import Flask, request
+from flask import Flask, request, jsonify
 # пакет для читання файлу .env
 from dotenv import load_dotenv
 # розширений дозвіл на взаємодію між різними доменами
 from flask_cors import CORS
 # пакет для взаємодії з mongo
 # from mongo_client import insert_test_document
+from mongo_client import mongo_client
+
+gallery = mongo_client.gallery
+images_collection = gallery.images
 
 # завантаження файлу .env
 load_dotenv( dotenv_path="./.env.local")
@@ -54,6 +58,24 @@ def new_image():
     data = response.json()
     # повертаємо дані
     return data
+
+@app.route("/images", methods=["GET", "POST"])
+def images():
+    if request.method == "GET":
+        # read images from database
+        images = images_collection.find({})
+        return jsonify([img for img in images])
+    if request.method == "POST":
+        # save image to database
+        image = request.get_json()
+        image["_id"] = image.get("id")
+        result = images_collection.insert_one(image)
+        insered_id = result.inserted_id
+        return {"inserted_id":insered_id}
+        
+
+    
+
    
 
 # запуск сервера
