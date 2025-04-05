@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -15,18 +16,18 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5000';
 function App() {
   const [search, setSearch] = useState('');
   const [images, setImages] = useState([]);
-  console.log(images);
-  const handleSearchSubmit = (e) => {
+
+  const handleSearchSubmit = async (e) => {
     e.preventDefault();
 
-    fetch(`${API_URL}/new-image?query=${search}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setImages([{ ...data, title: search }, ...images]);
-      })
+    if (!search) return;
 
-      .catch((err) => console.log(err));
-
+    try {
+      const res = await axios.get(`${API_URL}/new-image?query=${search}`);
+      setImages([{ ...res.data, title: search }, ...images]);
+    } catch (error) {
+      console.log(error);
+    }
     setSearch('');
   };
   const handleDeleteImage = (id) => {
