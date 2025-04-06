@@ -4,26 +4,26 @@ import PropTypes from 'prop-types';
 
 const Search = ({ search, setSearch, handleSubmit }) => {
   return (
-    <Container className='mt-4'>
-      <Row className='justify-content-center'>
+    <Container className="mt-4">
+      <Row className="justify-content-center">
         <Col xs={12} md={8} lg={6}>
           <Form onSubmit={handleSubmit}>
-            <Form.Row>
+            <Row>
               <Col xs={9} style={{ marginBlockEnd: '1rem' }}>
                 <Form.Control
-                  type='text'
+                  type="text"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  name='search'
-                  placeholder='Search for new image...'
+                  name="search"
+                  placeholder="Search for new image..."
                 />
               </Col>
               <Col>
-                <Button variant='primary' type='submit'>
+                <Button variant="primary" type="submit">
                   Search
                 </Button>
               </Col>
-            </Form.Row>
+            </Row>
           </Form>
         </Col>
       </Row>

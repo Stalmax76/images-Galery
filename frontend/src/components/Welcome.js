@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Jumbotron } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 const Welcome = () => {
   return (
-    <Jumbotron>
+    <Container className="text-center p-4 my-5 border rounded bg-light">
       <h1>Welcome to Images Gallery</h1>
       <p>
         This is a simple application that retrieves photos using the Unsplash
@@ -11,7 +11,7 @@ const Welcome = () => {
       <Button variant="primary" href="https://unsplash.com" target="_blank">
         View Images
       </Button>
-    </Jumbotron>
+    </Container>
   );
 };
 export default Welcome;

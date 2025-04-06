@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Search from './components/Search';
 import ImageCard from './components/ImageCard';
-import Welcome from './components/Welcom';
+import Welcome from './components/Welcome';
 
 // eslint-disable-next-line no-undef
 
@@ -17,10 +17,21 @@ function App() {
   const [search, setSearch] = useState('');
   const [images, setImages] = useState([]);
 
+  const getSavedImages = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/images`);
+      setImages(res.data || []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getSavedImages();
+  }, []);
+
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-
-    if (!search) return;
 
     try {
       const res = await axios.get(`${API_URL}/new-image?query=${search}`);
