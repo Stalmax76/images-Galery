@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-const ImageCard = ({ image, deleteImage }) => {
-  const { urls, title, alt_description, description, id } = image;
+const ImageCard = ({ image, deleteImage, saveImage }) => {
+  const { urls, title, alt_description, description, id, saved } = image;
 
   return (
     <Card style={{ width: '18rem', marginInline: 'auto', textAlign: 'center' }}>
@@ -14,7 +14,12 @@ const ImageCard = ({ image, deleteImage }) => {
         <Card.Text>{description || alt_description}</Card.Text>
         <Button variant="primary" onClick={() => deleteImage(id)}>
           Delete
-        </Button>
+        </Button>{' '}
+        {!saved && (
+          <Button variant="secondary" onClick={() => saveImage(id)}>
+            Save
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
