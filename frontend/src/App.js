@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -24,8 +26,10 @@ function App() {
       const res = await axios.get(`${API_URL}/images`);
       setImages(res.data || []);
       setLoading(false);
+      toast.success('Saved images loaded');
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -39,8 +43,10 @@ function App() {
     try {
       const res = await axios.get(`${API_URL}/new-image?query=${search}`);
       setImages([{ ...res.data, title: search }, ...images]);
+      toast.info(`New image ${search.toUpperCase()} was found`);
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
     setSearch('');
   };
@@ -48,10 +54,14 @@ function App() {
     try {
       const res = await axios.delete(`${API_URL}/images/${id}`);
       if (res.data?.deleted_id) {
+        toast.warn(
+          `Image ${images.find((i) => i.id === id).title.toUpperCase()} was deleted`,
+        );
         setImages(images.filter((image) => image.id !== id));
       }
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -67,9 +77,11 @@ function App() {
             image.id === id ? { ...image, saved: true } : image,
           ),
         );
+        toast.info(`Image ${imageToBeSaved.title.toUpperCase()}  was saved`);
       }
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -104,6 +116,7 @@ function App() {
           </Container>
         </>
       )}
+      <ToastContainer position="bottom-right" />
     </div>
   );
 }
