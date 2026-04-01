@@ -1,44 +1,44 @@
 services:
-  frontend:
-    restart: always
-    build: ./frontend
-    ports:
-      - '3000:3000'
-    working_dir: /app
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    depends_on:
-      - api
-  api:
-    restart: always
-    build: ./api
-    ports:
-      - '5000:5000'
-    working_dir: /app
-    volumes:
-      - ./api:/app
-  mongo:
-    image: mongo:latest
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: strong_password
-    volumes:
-      - mongodb_data:/data/db
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_SERVER: mongo
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: strong_password
-    depends_on:
-      - mongo
+   frontend:
+      restart: always
+      build: ./frontend
+      ports:
+         - '3000:3000'
+      working_dir: /app
+      volumes:
+         - ./frontend:/app
+         - /app/node_modules
+      environment:
+         - CHOKIDAR_USEPOLLING=true
+      depends_on:
+         - api
+   api:
+      restart: always
+      build: ./api
+      ports:
+         - '5000:5000'
+      working_dir: /app
+      volumes:
+         - ./api:/app
+   mongo:
+      image: mongo:latest
+      restart: always
+      environment:
+         MONGO_INITDB_ROOT_USERNAME: root
+         MONGO_INITDB_ROOT_PASSWORD: strong_password
+      volumes:
+         - mongodb_data:/data/db
+   mongo-express:
+      image: mongo-express
+      restart: always
+      ports:
+         - 8082:8081
+      environment:
+         ME_CONFIG_MONGODB_SERVER: mongo
+         ME_CONFIG_MONGODB_ADMINUSERNAME: root
+         ME_CONFIG_MONGODB_ADMINPASSWORD: strong_password
+      depends_on:
+         - mongo
 
 volumes:
-  mongodb_data:
+   mongodb_data:
